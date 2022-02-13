@@ -7,17 +7,27 @@ def find_empty(bo):
 
 
 def is_valid(bo, row, col, num):
-    if num in bo[row]:  # check row
+    return check_row(bo, row, num) and check_col(bo, col, num) and check_box(bo, row, col, num)
+
+
+def check_row(bo, row, num):
+    if num in bo[row]:
         return False
+    return True
 
+
+def check_col(bo, col, num):
     for i in range(9):
-        if bo[i][col] == num:  # check column
+        if bo[i][col] == num:
             return False
+    return True
 
+
+def check_box(bo, row, col, num):
     box_row, box_col = row - row % 3, col - col % 3
     for i in range(3):
         for j in range(3):
-            if bo[box_row + i][box_col + j] == num:  # check the box
+            if bo[box_row + i][box_col + j] == num:
                 return False
     return True
 
